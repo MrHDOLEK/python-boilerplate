@@ -4,8 +4,8 @@
   <a href="https://github.com/astral-sh/uv" target="blank"><img src="https://github.com/astral-sh/uv/blob/8674968a17e5f2ee0dda01d17aaf609f162939ca/docs/assets/logo-letter.svg" height="60" alt="uv logo" /></a>
 </p>
 
-[![CodeQL](https://github.com/MrHDOLEK/python-boilerplate/workflows/codeql/badge.svg)](https://github.com/MrHDOLEK/python-boilerplate/actions/workflows/code-quality.yml)
-[![GitHub CI](https://github.com/MrHDOLEK/python-boilerplate/workflows/ci/badge.svg)](https://github.com/MrHDOLEK/python-boilerplate/actions/workflows/python.yml)
+[![CodeQL](https://github.com/MrHDOLEK/python-boilerplate/actions/workflows/code-quality.yml/badge.svg?branch=main)](https://github.com/MrHDOLEK/python-boilerplate/actions/workflows/code-quality.yml)
+[![GitHub CI](https://github.com/MrHDOLEK/python-boilerplate/actions/workflows/python.yml/badge.svg?branch=main)](https://github.com/MrHDOLEK/python-boilerplate/actions/workflows/python.yml)
 [![GitHub license](https://img.shields.io/github/license/MrHDOLEK/python-boilerplate)](https://github.com/MrHDOLEK/python-boilerplate)
 [![Python](https://img.shields.io/badge/python-3.13-blue.svg?logo=python&logoColor=white)](https://www.python.org/)
 
