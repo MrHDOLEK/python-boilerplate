@@ -1,0 +1,58 @@
+[project]
+name = "monorepo"
+version = "0.0.0"
+description = "Example of monorepo setup using UV"
+authors = [
+  { name = "Aleksander Kowalski" }
+]
+requires-python = ">=3.13"
+readme = "README.md"
+dependencies = []
+
+[tool.uv.sources]
+utils = { workspace = true }
+core = { workspace = true }
+
+[tool.uv.workspace]
+members = [
+  "shared/*", "src/*"
+]
+
+[tool.uv]
+dev-dependencies = [
+  "pytest>=8.3.5",
+  "pytest-cov>=6.0.0",
+  "mypy>=1.15.0",
+  "bandit>=1.8.3",
+  "docformatter>=1.7.5",
+  "ruff>=0.9.10",
+  "pre-commit>=3.8.0",
+  "utils",
+  "core",
+]
+package = false
+
+[tool.ruff]
+lint.ignore = ["E501"]
+extend-exclude = [
+  "__pycache__",
+  ".eggs",
+  ".git",
+  ".venv",
+  "build",
+  "dist",
+  "notebooks",
+  ".cache"
+]
+line-length = 100
+
+[tool.pyright]
+exclude = [".venv", ".github", "docs", "tests"]
+include = ["src"]
+pythonVersion = "3.13"
+venvPath = "."
+venv = ".venv"
+
+[tool.pytest.ini_options]
+cache_dir = "./.cache/pytest"
+pythonpath = [".", "scripts"]
