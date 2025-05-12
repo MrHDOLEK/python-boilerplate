@@ -1,4 +1,4 @@
-name: Renovate Bot
+name: Code Quality Analysis
 
 on:
   push:
