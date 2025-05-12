@@ -10,6 +10,7 @@
 [![Python](https://img.shields.io/badge/python-3.13-blue.svg?logo=python&logoColor=white)](https://www.python.org/)
 
 ---
+
 #### A Python boilerplate using modern dev tools
 
 ## Project setup
