@@ -1,0 +1,30 @@
+#https://docs.python.org/3/library/logging.config.html#logging-config-dictschema
+logging:
+  version: 1
+  formatters:
+    simple:
+      format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+      datefmt: "%Y-%m-%d %H:%M:%S"
+  handlers:
+    console:
+      class: logging.StreamHandler
+      level: DEBUG
+      formatter: simple
+      stream: ext://sys.stdout
+  loggers:
+    reports:
+      level: DEBUG
+      handlers: [console]
+      propagate: no
+  root:
+    level: INFO
+    handlers: [console]
+
+api:
+  base_url: !ENV API_BASE_URL
+  retry_attempts: 3
+
+app:
+  name: "Hello World CLI"
+  version: "1.0.0"
+  default_greeting: "Hello"
