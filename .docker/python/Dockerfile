@@ -1,4 +1,4 @@
-FROM python:3.13.3
+FROM python:3.13.5
 ARG PACKAGE="core"
 
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /bin/uv
