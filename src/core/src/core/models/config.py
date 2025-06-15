@@ -30,7 +30,7 @@ class Settings(BaseModel):
         path = Path(__file__).parent.parent
         config_path = path / "config" / "config.yaml"
 
-        load_dotenv(dotenv_path=path.parent / ".env")
+        load_dotenv(dotenv_path=path.parent.parent / ".env")
 
         if not config_path.exists():
             raise FileNotFoundError(f"Config file not found: {config_path}")

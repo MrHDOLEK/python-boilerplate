@@ -57,7 +57,6 @@ repos:
             --wrap-descriptions,
             "90",
             src,
-            tests,
           ]
 
   # bandit - find common security issues
@@ -66,10 +65,8 @@ repos:
     hooks:
       - id: bandit
         name: bandit
-        exclude: ^tests/
-        args:
-          - -r
-          - src
+        args: ["-r", "src", "-x", "*/tests/*"]
+        pass_filenames: false
 
   # prettier - formatting JS, CSS, JSON, Markdown, ...
   - repo: https://github.com/pre-commit/mirrors-prettier
