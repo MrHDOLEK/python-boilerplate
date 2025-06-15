@@ -5,18 +5,18 @@ Core application module providing CLI interface and business logic functionality
 ## 📁 Structure
 
 ```
-src/
-├── clients/          # HTTP clients and external integrations
-├── commands/         # CLI command implementations
-├── config/           # Configuration management
-│   ├── config.yaml   # Application configuration
-│   └── logger_config.py
-├── exceptions/       # Custom exception classes
-├── models/           # Data models and schemas
-│   └── config.py     # Settings and configuration models
-├── services/         # Business logic services
-├── utils/            # Core utilities
-└── main.py           # Application entry point
+   src/
+   ├── core/                 # Core module source code
+   │   ├── clients/          # HTTP clients and external integrations
+   │   ├── commands/         # CLI command implementations
+   │   ├── config/           # Configuration management
+   │   ├── core/             # Core functionality
+   │   ├── exceptions/       # Custom exception classes
+   │   ├── models/           # Data models and schemas
+   │   ├── services/         # Business logic services
+   │   ├── utils/            # Core utilities
+   │   └── main.py           # Application entry point
+   └── tests/        # Core module tests
 ```
 
 ## 🚀 Usage
