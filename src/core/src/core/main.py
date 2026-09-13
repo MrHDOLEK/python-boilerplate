@@ -1,15 +1,16 @@
 import typer
 import wireup
-from .clients.http_client import HttpClient
-from .config.registry import get_registered_commands
-from .commands.user_commands import UserCommands
-from .config.logger_config import create_logger
-from .models.config import Settings
-from .services.user_service import UserService
 from utils import hello as hello_world_from_utils
 
+from .clients.http_client import HttpClient
+from .commands.user_commands import UserCommands
+from .config.logger_config import create_logger
+from .config.registry import get_registered_commands
+from .models.config import Settings
+from .services.user_service import UserService
+
 container = wireup.create_sync_container(
-    services=[Settings, create_logger, HttpClient, UserService, UserCommands]
+    injectables=[Settings, create_logger, HttpClient, UserService, UserCommands]
 )
 
 app = typer.Typer()

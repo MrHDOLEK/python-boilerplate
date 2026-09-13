@@ -1,26 +1,28 @@
-from typing import Any, Dict, Optional
+from typing import Any
 
-import requests  # type: ignore
+import requests
+from wireup import injectable
+
+from ..exceptions import HttpError
 from ..models.config import Settings
-from wireup import service
 
 
-@service
+@injectable
 class HttpClient:
     def __init__(self, settings: Settings):
         self.base_url = settings.api.base_url.rstrip("/")
         self.session = requests.Session()
 
-    def get(self, endpoint: str, params: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+    def get(self, endpoint: str, params: dict[str, Any] | None = None) -> dict[str, Any]:
         url = f"{self.base_url}{endpoint}"
         try:
             response = self.session.get(url, params=params)
             response.raise_for_status()
             return response.json()
         except requests.exceptions.RequestException as e:
-            raise Exception(f"HTTP request failed: {e}")
+            raise HttpError(f"HTTP request failed: {e}") from e
         except ValueError as e:
-            raise Exception(f"Invalid JSON response: {e}")
+            raise HttpError(f"Invalid JSON response: {e}") from e
 
     def close(self):
         self.session.close()

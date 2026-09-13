@@ -7,7 +7,7 @@
 [![CodeQL](https://github.com/MrHDOLEK/python-boilerplate/actions/workflows/code-quality.yml/badge.svg?branch=main)](https://github.com/MrHDOLEK/python-boilerplate/actions/workflows/code-quality.yml)
 [![GitHub CI](https://github.com/MrHDOLEK/python-boilerplate/actions/workflows/python.yml/badge.svg?branch=main)](https://github.com/MrHDOLEK/python-boilerplate/actions/workflows/python.yml)
 [![GitHub license](https://img.shields.io/github/license/MrHDOLEK/python-boilerplate)](https://github.com/MrHDOLEK/python-boilerplate)
-[![Python](https://img.shields.io/badge/python-3.13-blue.svg?logo=python&logoColor=white)](https://www.python.org/)
+[![Python](https://img.shields.io/badge/python-3.14-blue.svg?logo=python&logoColor=white)](https://www.python.org/)
 
 ---
 
@@ -41,6 +41,38 @@ pre-commit install
 
 ## Tools & Features
 
+### just
+
+Command runner holding the shortcuts for every routine task. Recipes live in `Justfile`.
+
+```bash
+# Install just (pick one)
+brew install just
+uv tool install rust-just
+
+# List every available recipe
+just
+
+# Run the CLI
+just run user list
+
+# Tests
+just test
+just test-cov
+
+# Individual quality checks
+just lint
+just fmt
+just typecheck
+just security
+
+# Full quality gate: lint, formatting, types, security, tests
+just check
+
+# Autofix formatting and lint, then run the gate
+just fix
+```
+
 ### uv
 
 Fast Python package manager, written in Rust. Configuration in `pyproject.toml` and dependencies locked in `uv.lock`.
@@ -64,7 +96,8 @@ pre-commit run --all-files
 
 ### ruff
 
-Fast Python linter and formatter. Rules defined in `pyproject.toml`.
+Fast Python linter and formatter. Rules defined in `pyproject.toml`. The default rule set is
+extended with `S` (flake8-bandit), so security scanning is part of an ordinary lint run.
 
 ```bash
 # Format code
@@ -72,6 +105,17 @@ uv run ruff format .
 
 # Check code
 uv run ruff check .
+
+# Security rules only
+uv run ruff check . --select S
+```
+
+### ty
+
+Fast static type checker from Astral. Configuration in `pyproject.toml` under `[tool.ty]`.
+
+```bash
+uv run ty check
 ```
 
 ### Testing
@@ -104,6 +148,5 @@ Learn more at these links:
 - [uv](https://github.com/astral-sh/uv)
 - [pre-commit](https://pre-commit.com/)
 - [ruff](https://github.com/astral-sh/ruff)
-- [mypy](http://mypy-lang.org/)
-- [bandit](https://bandit.readthedocs.io/)
+- [ty](https://docs.astral.sh/ty/)
 - [pytest](https://docs.pytest.org/)

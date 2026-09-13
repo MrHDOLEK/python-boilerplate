@@ -2,12 +2,12 @@ ci:
   skip: []
 
 default_language_version:
-  python: python3.13
+  python: python3.14
 
 repos:
   # general checks (see here: https://pre-commit.com/hooks.html)
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
+    rev: v6.0.0
     hooks:
       - id: check-yaml
         args: [--allow-multiple-documents]
@@ -17,60 +17,24 @@ repos:
 
   # ruff - linting + formatting
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: "v0.12.1"
+    rev: "v0.16.7"
     hooks:
       - id: ruff
         name: ruff
       - id: ruff-format
         name: ruff-format
 
-  # mypy - lint-like type checking
-  - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.16.1
+  # ty - static type checking
+  - repo: https://github.com/astral-sh/ty-pre-commit
+    rev: v0.0.80
     hooks:
-      - id: mypy
-        name: mypy
-        additional_dependencies:
-          [
-            types-PyYAML,
-            types-requests,
-            pydantic,
-            python-dotenv,
-            pyyaml-env-tag,
-          ]
-
-  # docformatter - formats docstrings to follow PEP 257
-  - repo: https://github.com/pycqa/docformatter
-    # todo: replace when >v1.7.5 will be published
-    rev: 06907d0267368b49b9180eed423fae5697c1e909
-    hooks:
-      - id: docformatter
-        name: docformatter
-        args:
-          [
-            -r,
-            -i,
-            --pre-summary-newline,
-            --make-summary-multi-line,
-            --wrap-summaries,
-            "90",
-            --wrap-descriptions,
-            "90",
-            src,
-          ]
-
-  # bandit - find common security issues
-  - repo: https://github.com/pycqa/bandit
-    rev: 1.8.5
-    hooks:
-      - id: bandit
-        name: bandit
-        args: ["-r", "src", "-x", "*/tests/*"]
-        pass_filenames: false
+      - id: ty
+        name: ty
 
   # prettier - formatting JS, CSS, JSON, Markdown, ...
-  - repo: https://github.com/pre-commit/mirrors-prettier
-    rev: v3.1.0
+  # note: pre-commit/mirrors-prettier is archived; rbubley/mirrors-prettier is the maintained fork
+  - repo: https://github.com/rbubley/mirrors-prettier
+    rev: v3.9.6
     hooks:
       - id: prettier
         exclude: ^uv.lock

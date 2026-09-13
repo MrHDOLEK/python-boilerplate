@@ -1,22 +1,23 @@
-from typing import Any, Dict, List, cast
+from typing import Any, cast
+
+from wireup import injectable
 
 from ..clients.http_client import HttpClient
 from ..models.user import User
-from wireup import service
 
 
-@service()
+@injectable()
 class UserService:
     def __init__(self, http_client: HttpClient):
         self.http_client = http_client
 
     def get_user_by_id(self, user_id: int) -> User:
         data = self.http_client.get(f"/users/{user_id}")
-        return User.from_dict(cast(Dict[str, Any], data))
+        return User.from_dict(data)
 
-    def get_all_users(self) -> List[User]:
+    def get_all_users(self) -> list[User]:
         data = self.http_client.get("/users")
-        return [User.from_dict(user_data) for user_data in cast(List[Dict[str, Any]], data)]
+        return [User.from_dict(user_data) for user_data in cast(list[dict[str, Any]], data)]
 
-    def get_user_posts(self, user_id: int) -> List[Dict[str, Any]]:
-        return cast(List[Dict[str, Any]], self.http_client.get(f"/users/{user_id}/posts"))
+    def get_user_posts(self, user_id: int) -> list[dict[str, Any]]:
+        return cast(list[dict[str, Any]], self.http_client.get(f"/users/{user_id}/posts"))

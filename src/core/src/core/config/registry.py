@@ -1,4 +1,4 @@
-_command_registry = []
+_command_registry: list[type] = []
 
 
 def command_group(name: str):
