@@ -36,8 +36,8 @@ class Settings(BaseModel):
         if not config_path.exists():
             raise FileNotFoundError(f"Config file not found: {config_path}")
 
-        with open(config_path, "r") as f:
-            config_data = yaml.load(f, Loader=SafeLoader)
+        with open(config_path, "r") as config_file:
+            config_data = yaml.load(config_file, Loader=SafeLoader)
 
         super().__init__(**config_data)
 

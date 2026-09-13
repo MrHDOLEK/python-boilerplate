@@ -19,10 +19,10 @@ class HttpClient:
             response = self.session.get(url, params=params)
             response.raise_for_status()
             return response.json()
-        except requests.exceptions.RequestException as e:
-            raise HttpError(f"HTTP request failed: {e}") from e
-        except ValueError as e:
-            raise HttpError(f"Invalid JSON response: {e}") from e
+        except requests.exceptions.RequestException as error:
+            raise HttpError(f"HTTP request failed: {error}") from error
+        except ValueError as error:
+            raise HttpError(f"Invalid JSON response: {error}") from error
 
     def close(self):
         self.session.close()

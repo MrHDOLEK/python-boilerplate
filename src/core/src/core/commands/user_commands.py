@@ -32,9 +32,9 @@ class UserCommands:
             self.logger.info(f"User: {user.name} ({user.email})")
             self.logger.info(f"Company: {user.company.name}")
             self.logger.info(f"Address: {user.address.street}, {user.address.city}")
-        except (CoreError, ValidationError) as e:
-            self.logger.error(f"Error fetching user: {e}")
-            raise typer.Exit(1) from e
+        except (CoreError, ValidationError) as error:
+            self.logger.error(f"Error fetching user: {error}")
+            raise typer.Exit(1) from error
 
     def list_users(self) -> None:
         try:
@@ -42,9 +42,9 @@ class UserCommands:
             self.logger.info(f"Found {len(users)} users:")
             for user in users:
                 self.logger.info(f"  {user.id}: {user.name} ({user.email})")
-        except (CoreError, ValidationError) as e:
-            self.logger.error(f"Error fetching users: {e}")
-            raise typer.Exit(1) from e
+        except (CoreError, ValidationError) as error:
+            self.logger.error(f"Error fetching users: {error}")
+            raise typer.Exit(1) from error
 
     def get_user_posts(
         self, user_id: Annotated[int, typer.Option("--id", help="User ID")] = 1
@@ -55,6 +55,6 @@ class UserCommands:
             self.logger.info(f"Posts by {user.name}:")
             for post in posts:
                 self.logger.info(f"  - {post['title']}")
-        except (CoreError, ValidationError) as e:
-            self.logger.error(f"Error fetching posts: {e}")
-            raise typer.Exit(1) from e
+        except (CoreError, ValidationError) as error:
+            self.logger.error(f"Error fetching posts: {error}")
+            raise typer.Exit(1) from error
