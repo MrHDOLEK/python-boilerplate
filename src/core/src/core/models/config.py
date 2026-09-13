@@ -1,10 +1,11 @@
 from pathlib import Path
+
 import yaml
+from dotenv import load_dotenv
 from pydantic import BaseModel
-from wireup import service
+from wireup import injectable
 from yaml.loader import SafeLoader
 from yaml_env_tag import construct_env_tag
-from dotenv import load_dotenv
 
 SafeLoader.add_constructor("!ENV", construct_env_tag)
 
@@ -20,7 +21,7 @@ class AppConfig(BaseModel):
     default_greeting: str
 
 
-@service
+@injectable
 class Settings(BaseModel):
     api: ApiConfig
     app: AppConfig
@@ -41,5 +42,5 @@ class Settings(BaseModel):
         super().__init__(**config_data)
 
     @classmethod
-    def load_from_yaml(cls) -> "Settings":
+    def load_from_yaml(cls) -> Settings:
         return cls()

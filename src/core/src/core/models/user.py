@@ -1,4 +1,4 @@
-from typing import Any, Dict
+from typing import Any
 
 from pydantic import BaseModel
 
@@ -8,7 +8,7 @@ class Address(BaseModel):
     suite: str
     city: str
     zipcode: str
-    geo: Dict[str, str]
+    geo: dict[str, str]
 
 
 class Company(BaseModel):
@@ -28,5 +28,5 @@ class User(BaseModel):
     company: Company
 
     @classmethod
-    def from_dict(cls, data: Dict[str, Any]) -> "User":
+    def from_dict(cls, data: dict[str, Any]) -> User:
         return cls(**data)

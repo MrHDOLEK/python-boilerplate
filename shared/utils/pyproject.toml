@@ -5,7 +5,7 @@ description = "Utility functions"
 authors = [
   {name="Aleksander Kowalski"}
 ]
-requires-python = ">=3.13"
+requires-python = ">=3.14"
 readme = "README.md"
 dependencies = [
 ]
