@@ -14,15 +14,15 @@ install: sync
     uv run pre-commit install
 
 # Run the CLI, e.g. `just run user list`
-run *ARGS:
-    uv run core {{ ARGS }}
+run *ARGUMENTS:
+    uv run core {{ ARGUMENTS }}
 
 # Run the test suite, e.g. `just test -k users`
-test *ARGS:
-    uv run pytest {{ ARGS }}
+test *ARGUMENTS:
+    uv run pytest {{ ARGUMENTS }}
 
 # Run the test suite with a coverage report
-test-cov:
+test-coverage:
     uv run pytest --cov=src
 
 # Lint with ruff
@@ -34,15 +34,15 @@ lint-fix:
     uv run ruff check . --fix
 
 # Format with ruff
-fmt:
+format:
     uv run ruff format .
 
 # Report formatting problems without rewriting files
-fmt-check:
+format-check:
     uv run ruff format . --check
 
 # Static type analysis with ty
-typecheck:
+type-check:
     uv run ty check
 
 # Security scan only (bandit rules, already part of `just lint`)
@@ -54,18 +54,18 @@ hooks:
     uv run pre-commit run --all-files
 
 # Full read-only quality gate: lint (incl. security), formatting, types, tests
-check: lint fmt-check typecheck test
+check: lint format-check type-check test
 
 # Reformat and autofix, then run the full quality gate
-fix: fmt lint-fix check
+fix: format lint-fix check
 
 # Build the Docker image
 docker-build:
     docker buildx build -f {{ DOCKERFILE }} -t {{ IMAGE }} .
 
 # Run the CLI inside the Docker image, e.g. `just docker-run user list`
-docker-run *ARGS:
-    docker run -it --rm {{ IMAGE }} core {{ ARGS }}
+docker-run *ARGUMENTS:
+    docker run -it --rm {{ IMAGE }} core {{ ARGUMENTS }}
 
 # Refresh the lockfile without changing pinned versions
 lock:

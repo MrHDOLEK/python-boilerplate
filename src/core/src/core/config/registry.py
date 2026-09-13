@@ -2,10 +2,10 @@ _command_registry: list[type] = []
 
 
 def command_group(name: str):
-    def decorator(cls):
-        cls._command_name = name
-        _command_registry.append(cls)
-        return cls
+    def decorator(command_class):
+        command_class._command_name = name
+        _command_registry.append(command_class)
+        return command_class
 
     return decorator
 

@@ -58,12 +58,12 @@ just run user list
 
 # Tests
 just test
-just test-cov
+just test-coverage
 
 # Individual quality checks
 just lint
-just fmt
-just typecheck
+just format
+just type-check
 just security
 
 # Full quality gate: lint, formatting, types, security, tests
