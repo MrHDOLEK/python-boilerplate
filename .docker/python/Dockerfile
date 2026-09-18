@@ -1,7 +1,7 @@
 FROM python:3.14.7
 ARG PACKAGE="core"
 
-COPY --from=ghcr.io/astral-sh/uv:0.12.13 /uv /bin/uv
+COPY --from=ghcr.io/astral-sh/uv:0.12.17 /uv /bin/uv
 
 WORKDIR /app
 
