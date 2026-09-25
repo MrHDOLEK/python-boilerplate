@@ -17,7 +17,7 @@ repos:
 
   # ruff - linting + formatting
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: "v0.16.7"
+    rev: "v0.16.9"
     hooks:
       - id: ruff
         name: ruff
@@ -26,7 +26,7 @@ repos:
 
   # ty - static type checking
   - repo: https://github.com/astral-sh/ty-pre-commit
-    rev: v0.0.80
+    rev: v0.0.84
     hooks:
       - id: ty
         name: ty
@@ -34,7 +34,7 @@ repos:
   # prettier - formatting JS, CSS, JSON, Markdown, ...
   # note: pre-commit/mirrors-prettier is archived; rbubley/mirrors-prettier is the maintained fork
   - repo: https://github.com/rbubley/mirrors-prettier
-    rev: v3.9.6
+    rev: v3.9.9
     hooks:
       - id: prettier
         exclude: ^uv.lock
